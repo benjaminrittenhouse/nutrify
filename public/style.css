@@ -11,6 +11,12 @@ body {
 	min-height: 600px;
 }
 
+.tname {
+	display: block;
+	width: 33%;
+	word-wrap: break-word;
+}
+
 #title {
 	border-bottom: 0.5px solid gray;
 	padding bottom: 30px;
