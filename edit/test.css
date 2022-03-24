@@ -55,13 +55,17 @@ body {
 }
 
 
+.artist1 {
+	width: 92%;
+	padding-left: 2.5rem;
+	padding-bottom: .5rem; 
+}
 
 .artist {
 	width: 92%;
-	padding-left: 2rem;
+	padding-left: 2.5rem;
 	pading-top: .5rem;
 	padding-bottom: .5rem;
-	
 }
 
 

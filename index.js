@@ -11,6 +11,8 @@ const express = require('express')
 var LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
 
+const { engine } = require('express-handlebars');
+
 const path = require('path');
 
 const port = process.env.PORT || 8080;
@@ -48,6 +50,14 @@ var spotifyApi = new SpotifyWebApi({
   
   const app = express();
   
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set("views", "./views");
+
+app.use(express.static('public'))
+
+
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
   });
@@ -122,7 +132,7 @@ var spotifyApi = new SpotifyWebApi({
               var data2 = xhr2.responseText;
               var arr = getMyData(data2);
               console.log("arr[2]: " + arr[2]);
-              res.render("display.pug", {trackone: arr[0], tracktwo: arr[1], trackthree: arr[2], trackfour: arr[3], trackfive: arr[4]});
+              res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], trackfour : arr[3], trackfive : arr[4],});
            }};
 
         xhr2.send();
