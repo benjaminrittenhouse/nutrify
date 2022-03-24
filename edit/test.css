@@ -5,8 +5,8 @@ body {
 #main {
 	border: 3px solid black;
 	position: relative;
-	width: 18vw;
-	height: 80vh;
+	width: 25vw;
+	height: 90vh;
 	margin: 0 auto;
 }
 
@@ -20,7 +20,7 @@ body {
 }
 
 #servings {
-	padding-left: .5rem;
+	padding-left: .7rem;
 	padding-top: 5px;
 	font-size: 1.1rem;
 	font-weight: lighter;
@@ -37,13 +37,13 @@ body {
 
 #servingsize {
 	float: left;
-	padding-left: .5rem;
+	padding-left: .7rem;
 	margin-bottom: 1rem;
 }
 
 #cups {
 	float: right;
-	padding-right: .5rem;
+	padding-right: .7rem;
 }
 
 #blackbar {
@@ -67,8 +67,8 @@ body {
 .track {
 	width: 92%;
 	padding-left: 1rem;
-	pading-top: .5rem;
 	padding-bottom: .5rem;
+	font-weight: bold;
 }
 
 
@@ -85,7 +85,7 @@ body {
 }
 
 #amtper {
-	padding-left: .5rem;
+	padding-left: .8rem;
 	padding-top: .5rem;
 	font-weight: bold;
 }
@@ -93,7 +93,7 @@ body {
 #calories {
 	font-size: 2rem;
 	font-weight: bold;
-	padding-left: .4rem;
+	padding-left: .7rem;
 }
 
 #caloriecount {
@@ -101,7 +101,7 @@ body {
 	font-size: 2.3rem;
 	font-weight: bold;
 	margin-top: -2.3rem;
-	margin-right: -1rem;
+	margin-right: -1.2rem;
 }
 
 #cal {
@@ -120,4 +120,19 @@ body {
 	width: 92%;
 	margin: 0 auto;
 	border-bottom: 1px solid gray;
+	margin-bottom: .5rem;
+}
+
+.time {
+	font-weight: lighter;
+	right: 0;
+}
+
+.dvp {
+	float: right;
+}
+
+.dvpa {
+	float: right;
+	padding-right: 1rem;
 }
