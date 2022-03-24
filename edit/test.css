@@ -58,16 +58,17 @@ body {
 .artist {
 	width: 92%;
 	padding-left: 2rem;
-	border-top: 1px solid gray;
-	border-bottom: 1px solid gray;
+	pading-top: .5rem;
+	padding-bottom: .5rem;
+	
 }
 
 
 .track {
 	width: 92%;
-	padding-left: .5rem;
-	border-top: 1px solid gray;
-	borer-bottom: 1px solid gray;
+	padding-left: 1rem;
+	pading-top: .5rem;
+	padding-bottom: .5rem;
 }
 
 
@@ -79,4 +80,44 @@ body {
 	float: right;
 	padding-right: .5rem;
 	font-weight: bold;
+	padding-top: .5rem;
+	font-size: .9rem;
+}
+
+#amtper {
+	padding-left: .5rem;
+	padding-top: .5rem;
+	font-weight: bold;
+}
+
+#calories {
+	font-size: 2rem;
+	font-weight: bold;
+	padding-left: .4rem;
+}
+
+#caloriecount {
+	float: right;
+	font-size: 2.3rem;
+	font-weight: bold;
+	margin-top: -2.3rem;
+	margin-right: -1rem;
+}
+
+#cal {
+	display: inline-block;
+	width: 92%;
+	margin: 0 auto;
+}
+
+#blackbarskinny {
+	border: 3px solid black;
+	width: 93%;
+	margin: 0 auto;
+}
+
+#separate {
+	width: 92%;
+	margin: 0 auto;
+	border-bottom: 1px solid gray;
 }
