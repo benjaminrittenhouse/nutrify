@@ -1,0 +1,82 @@
+body {
+	font-family: 'Helvetica', serif;
+}
+
+#main {
+	border: 3px solid black;
+	position: relative;
+	width: 18vw;
+	height: 80vh;
+	margin: 0 auto;
+}
+
+#title {
+	border-bottom: 0.5px solid gray;
+	padding bottom: 30px;
+	width: 95%;
+	margin: 0 auto;
+	font-weight: 900;
+	font-size: 40px;
+}
+
+#servings {
+	padding-left: .5rem;
+	padding-top: 5px;
+	font-size: 1.1rem;
+	font-weight: lighter;
+	letter-spacing: .05px
+}
+
+#ss {
+	margin-top: .2rem;
+	width: 100%;
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+#servingsize {
+	float: left;
+	padding-left: .5rem;
+	margin-bottom: 1rem;
+}
+
+#cups {
+	float: right;
+	padding-right: .5rem;
+}
+
+#blackbar {
+	border: 7px solid black;
+	width: 92%;
+	margin: 0 auto;
+	margin-top: 2rem;
+}
+
+
+
+.artist {
+	width: 92%;
+	padding-left: 2rem;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+
+.track {
+	width: 92%;
+	padding-left: .5rem;
+	border-top: 1px solid gray;
+	borer-bottom: 1px solid gray;
+}
+
+
+#arttrack {
+	margin-top: 2rem;
+}
+
+#dailyval {
+	float: right;
+	padding-right: .5rem;
+	font-weight: bold;
+}
