@@ -164,8 +164,8 @@ app.use(express.static('public'))
               var data2 = xhr2.responseText;
               var arr = getMyData(data2);
               var artists = getArtists(data2);
-              var dur = getDuration(data2);
-              res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2]});
+              var times = getDuration(data2);
+              res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2], timeone: times[0], timetwo: times[1], timethree: times[2], timetotal: times[3], date: times[4]});
            }};
 
         xhr2.send();
@@ -236,16 +236,26 @@ function getArtists(jsoninp) {
 
 function getDuration(jsoninp){
     const obj = JSON.parse(jsoninp);
-    let ret = new Array(3);
+    let ret = new Array(5);
     // each song
-
+    var total = 0;
     for(var i = 0; i < 3; i++){
           var millis = obj.items[i].duration_ms;      
           var minutes = Math.floor(millis / 60000);
           var seconds = ((millis % 60000) / 1000).toFixed(0);
           var final = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
           ret[i] = final;
+          total += millis;
     }
+
+    var millis2 = total;   
+    var minutes2 = Math.floor(millis2 / 60000);
+    var seconds2 = ((millis2 % 60000) / 1000).toFixed(0);
+    var final2 = minutes2 + ":" + (seconds2 < 10 ? '0' : '') + seconds2;
+    
+    ret[3] = final2
+
+    ret[4] = dt();
 
     console.log("Final: " + ret);
     return ret;
@@ -258,5 +268,15 @@ function getUserName(jsoninp){
   ret = obj.display_name;
 
   return ret;
+}
+
+function dt(){
+  var today = new Date();
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  today = mm + '/' + yyyy;
+
+
+  return today;
 }
 
