@@ -87,13 +87,45 @@ app.use(express.static('public'))
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
   
-        console.log('access_token:', access_token);
 
 
         console.log(
           `Sucessfully retreived access token. Expires in ${expires_in} s.`
         );
         
+
+/* trying to get username in a 2 way API call
+        var index = ["https://api.spotify.com/v1/me", "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=3"];
+
+        var request = new XMLHttpRequest();
+
+        for (var i = 0; i < index.length; i++) {
+            console.log("i = " + i);
+            var url = index[i];
+
+            request.open("GET", url);
+
+            request.setRequestHeader("Accept", "application/json");
+            request.setRequestHeader("Content-Type", "application/json");
+            request.setRequestHeader("Authorization", "Bearer " + access_token);
+
+            
+            request.onreadystatechange = function() {
+                if(request.readyState === 4) {
+                    var data2 = request.responseText;
+                    var arr = getMyData(data2);
+                    var artists = getArtists(data2);
+                    if(i !== 2){
+                        var un = getUserName(data2);
+                    }
+                    res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2], username: un},);
+                }
+            }
+            request.send();
+        } 
+
+*/
+
 
         /* Get user name 
         var url1 = "https://api.spotify.com/v1/me";
@@ -117,8 +149,8 @@ app.use(express.static('public'))
 
 
 
-        /* Get user top 5 tracks */
-        var url2 = "https://api.spotify.com/v1/me/top/tracks?limit=5";
+        // Get user top 5 tracks 
+        var url2 = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=3";
 
         var xhr2 = new XMLHttpRequest();
         xhr2.open("GET", url2);
@@ -131,11 +163,14 @@ app.use(express.static('public'))
            if (xhr2.readyState === 4) {
               var data2 = xhr2.responseText;
               var arr = getMyData(data2);
-              console.log("arr[2]: " + arr[2]);
-              res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], trackfour : arr[3], trackfive : arr[4],});
+              var artists = getArtists(data2);
+              var dur = getDuration(data2);
+              res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2]});
            }};
 
         xhr2.send();
+
+        //console.log("lets go");
         // end get user top 5 tracks
 
 
@@ -168,32 +203,58 @@ app.use(express.static('public'))
 
 function getMyData(jsoninp) {
     const obj = JSON.parse(jsoninp);
-    let ret = new Array(5);
-    for(var i = 0; i < 5; i++){
-      var tempstr = "";
-     // ret += "<div>";
-      //      song name                     album name              
-      tempstr += obj.items[i].name + " - "; /*obj.items[i].album.name + */
+    let ret = new Array(3);
+        for(var i = 0; i < 3; i++){
+          var tempstr = "";
+          // ret += "<div>";
+          //      song name                     album name              
+          tempstr += obj.items[i].name; /*obj.items[i].album.name + */
 
-      // artists who made it
-      for(var j = 0; j < Object.keys(obj.items[i].artists).length; j++){
-        if(j !== Object.keys(obj.items[i].artists).length - 1){
-            tempstr += obj.items[i].artists[j].name + ", ";
-        } else {
-            tempstr += obj.items[i].artists[j].name;
+          ret[i] = tempstr;
         }
-        
-      }
-     // ret += "</div>";
+    
+    return ret;
+}
 
-     ret[i] = tempstr;
+function getArtists(jsoninp) {
+    const obj = JSON.parse(jsoninp);
+    let ret = new Array(3);
+    // each song
+
+
+    for(var i = 0; i < 3; i++){
+      let temp = new Array(Object.keys(obj.items[i].artists).length);
+      // artists who made song (2d array)
+      for(var j = 0; j < Object.keys(obj.items[i].artists).length; j++){
+          temp[j] = obj.items[i].artists[j].name
+      }
+
+     ret[i] = temp;
     }
+    return ret;
+}
+
+function getDuration(jsoninp){
+    const obj = JSON.parse(jsoninp);
+    let ret = new Array(3);
+    // each song
+
+    for(var i = 0; i < 3; i++){
+          var millis = obj.items[i].duration_ms;      
+          var minutes = Math.floor(millis / 60000);
+          var seconds = ((millis % 60000) / 1000).toFixed(0);
+          var final = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+          ret[i] = final;
+    }
+
+    console.log("Final: " + ret);
     return ret;
 }
 
 function getUserName(jsoninp){
   const obj = JSON.parse(jsoninp);
   var ret = "";
+  console.log(JSON.stringify(obj, null, 2));
   ret = obj.display_name;
 
   return ret;

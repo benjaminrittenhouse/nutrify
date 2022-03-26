@@ -5,10 +5,8 @@ body {
 #main {
 	border: 3px solid black;
 	position: relative;
-	/*width: 30%;*/
-	height: 90vh;
 	margin: 0 auto;
-	min-height: 600px;
+	margin-top: 25px;
 }
 
 #title {
@@ -115,10 +113,17 @@ body {
 	margin: 0 auto;
 }
 
-#blackbarskinny {
+.blackbarskinny {
 	border: 3px solid black;
 	width: 93%;
 	margin: 0 auto;
+
+}
+
+#protein {
+	padding-left: 1rem;
+	font-weight: bold;
+	padding-bottom: .5rem;
 }
 
 #separate {
@@ -140,6 +145,15 @@ body {
 .dvpa {
 	float: right;
 	padding-right: 1rem;
+}
+
+#nutFoot {
+	padding-left: 1rem;
+	font-size:  .9rem;
+	margin:  0 auto;
+	padding-top: 1rem;
+	width:  92%;
+	padding-bottom:  1rem;
 }
 
 @media only screen and (max-width: 2000px) {

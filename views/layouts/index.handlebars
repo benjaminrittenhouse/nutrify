@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel = "stylesheet" href = "style.css"> 
-		<script src="nunjucks.js"></script>
+		<link rel = "stylesheet" href = "main.css"> 
+		<script src = "dt.js"></script>
 	</head>
 
 	<body>
 		<div id="main">
 			<div id = "title">Nutrify</div>
-			<div id = "servings">5 servings per container</div>
+			<div id = "servings">3 servings per container</div>
 
 			<div id = "ss">
 				<div id = "servingsize">
 					Serving Size
 				</div>
 				<div id = "cups">
-					1/5 Cup
+					<span id = "date">{{ username }}</span> Cup
 				</div>
 			</div>
 
@@ -33,12 +33,16 @@
 				</div>
 
 				<div id = "caloriecount">
-					230
+					2022
 				</div>
+
+				
 			</div>
+
+			<div class = "blackbarskinny">
+				</div>
 			
-			<div id = "blackbarskinny">
-			</div>
+			
 
 			<div id = "dailyval">
 					% Daily Value *
@@ -49,67 +53,65 @@
 					<div id = "separate">
 					</div>
 
+
+
 					<div class="track"><span id = "tname">{{ trackone }}</span><span class = "time"> 2:45g</span><span class = "dvp">1%</span></div>
 
 					<div id = "separate">
 					</div>
 
+					{{#each artists1}}
+    					<div class = "artist1">{{ this }}</div>
+							<div id = "separate">
+						</div>
+    				{{/each}}
 
-					<div class = "artist1">Nardo Wick</div>
-					<div id = "separate">
-					</div>
-					<div class = "artist">Future</div>
-					<div id = "separate">
-					</div>
-					<div class = "artist">Lil Baby</div>
 
-					<div id = "separate">
-					</div>
 
+					
 					<div class="track"><span id = "tname">{{ tracktwo }}</span><span class = "time"> 1:55g</span><span class = "dvp">2%</span></div>
 
 					<div id = "separate">
 					</div>
 
-					<div class = "artist1">Lil Eazzyy</div>
-					<div id = "separate">
-					</div>
-					<div class = "artist">Future</div>
+					{{#each artists2}}
+    					<div class = "artist1">{{ this }}</div>
+							<div id = "separate">
+						</div>
+    				{{/each}}
 
-					<div id = "separate">
-					</div>
+
 
 					<div class="track"><span id = "tname">{{ trackthree }}</span><span class = "time"> 3:18g</span><span class = "dvp">3%</span></div>
 
 					<div id = "separate">
 					</div>
 
-					<div class = "artist1">Drake</div>
+					{{#each artists3}}
+    					<div class = "artist1">{{ this }}</div>
+							<div id = "separate">
+						</div>
+    				{{/each}}
 
-					<div id = "separate">
-					</div>
 
-					<div class="track"><span id = "tname">{{ trackfour }}</span><span class = "time"> 2:25g</span><span class = "dvp">4%</span></div>
 
-					<div id = "separate">
-					</div>
+    				<div id = "protein">Protein <span class = "time"> 150g</span></div>
 
-					<div class = "artist1">Drake</div>
-					<div id = "separate">
-					</div>
-					<div class = "artist">Lil Baby</div>
+    				<div class = "blackbarskinny">
+				</div>
+				</div>
 
-					<div id = "separate">
-					</div>
+				
 
-					<div class="track"><span id = "tname">{{ trackfive }}</span><span class = "time"> 1:45g</span><span class = "dvp">5%</span></div>
-
-					<div id = "separate">
-					</div>
-
-					<div class = "artist1">Drake</div>
-
+				<div id = "nutFoot">
+					* The % Daily Value (DV) lets you know the order of the bangers you've been listening to in the past month. 24 hours a day of listening is used for general listening advice. Cheers to your top 3.
 				</div>
 		</div>
+
+
+		<script>
+			//var date = dt();
+			console.log("Date:");
+		</script>
 	</body>
 </html>

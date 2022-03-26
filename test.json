@@ -1,26 +1,3 @@
-  //GET MY PROFILE DATA
-
-function getMyData(jsoninp) {
-    const obj = JSON.parse(jsoninp);
-    var ret = "";
-    for(var i = 0; i < 5; i++){
-     // ret += "<div>";
-      //      song name                     album name              
-      ret += obj.items[i].name + " - "; /*obj.items[i].album.name + */
-
-      // artists who made it
-      for(var j = 0; j < Object.keys(obj.items[i].artists).length; j++){
-        if(j !== Object.keys(obj.items[i].artists).length - 1){
-            ret += obj.items[i].artists[j].name + ", ";
-        } else {
-            ret += obj.items[i].artists[j].name;
-        }
-        
-      }
-     // ret += "</div>";
-    }
-    return ret;
-}
 
 {
   "items" : [ {
