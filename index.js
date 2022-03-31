@@ -48,7 +48,7 @@ var spotifyApi = new SpotifyWebApi({
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set("views", "./views/layouts");
+app.set("views", "./views");
 
 app.use(express.static('public'))
 
