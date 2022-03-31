@@ -53,11 +53,11 @@ app.set("views", "./views");
 app.use(express.static('public'))
 
 
-  app.get('/', function(req, res) {
+  /*app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
-  });
+  });*/
 
-  app.get('/login', (req, res) => {
+  app.get('/', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
   });
   
