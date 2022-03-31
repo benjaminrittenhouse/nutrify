@@ -48,7 +48,7 @@ var spotifyApi = new SpotifyWebApi({
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set("views", "./views");
+app.set("views", "./views/layouts");
 
 app.use(express.static('public'))
 
@@ -105,7 +105,7 @@ app.use(express.static('public'))
               var arr = getMyData(data2);
               var artists = getArtists(data2);
               var times = getDuration(data2);
-              res.render("index", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2], timeone: times[0], timetwo: times[1], timethree: times[2], timetotal: times[3], date: times[4]});
+              res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2], timeone: times[0], timetwo: times[1], timethree: times[2], timetotal: times[3], date: times[4]});
            }};
 
         xhr2.send();
