@@ -12,7 +12,7 @@ const { engine } = require('express-handlebars');
 
 const path = require('path');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 const scopes = [
     'ugc-image-upload',
@@ -126,9 +126,9 @@ app.use(express.static('public'))
       });
   });
   
-  app.listen(8888, () =>
+  app.listen(PORT, () =>
     console.log(
-      'HTTP Server up. Now go to http://localhost:8888/login in your browser.'
+      'HTTP Server up.'
     )
   );
 
