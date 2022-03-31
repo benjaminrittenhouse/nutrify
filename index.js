@@ -141,8 +141,12 @@ function getMyData(jsoninp) {
         for(var i = 0; i < 3; i++){
           var tempstr = "";
           // ret += "<div>";
-          //      song name                     album name              
-          tempstr += obj.items[i].name; /*obj.items[i].album.name + */
+          //      song name                     album name    
+          if(obj.items[i].name !== 'undefined'){
+            tempstr += obj.items[i].name; /*obj.items[i].album.name + */
+          } else {
+            tempstr += "";
+          }  
 
           ret[i] = tempstr;
         }
