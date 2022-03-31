@@ -2,13 +2,18 @@ body {
 	font-family: 'Helvetica', serif;
 }
 
+.tn {
+	display:  inline-block;
+	width:  85%;
+}
+
 #main {
 	border: 3px solid black;
 	position: relative;
 	/*width: 30%;*/
-	height: 90vh;
+	/*height: 90vh;*/
 	margin: 0 auto;
-	min-height: 96vh;
+	padding:  0;
 }
 
 #title {
@@ -76,9 +81,6 @@ body {
 	font-weight: bold;
 }
 
-.artist1, .artist, .track {
-
-}
 
 
 #arttrack {
@@ -139,6 +141,7 @@ body {
 
 .dvp {
 	float: right;
+	margin:  0 auto;	
 }
 
 .dvpa {
@@ -157,6 +160,7 @@ body {
 	font-size:  .9rem;
 	margin:  0 auto;
 	padding-top: 1rem;
+	padding-bottom: 1rem;
 	width:  92%;
 }
 
@@ -210,7 +214,8 @@ body {
 
 @media only screen and (max-width: 600px) {
   #main{
-  	width: 80%;
+  	width: 95%;
+  	font-size: .9rem;
   }
 }
 

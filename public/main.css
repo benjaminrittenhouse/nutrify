@@ -2,11 +2,18 @@ body {
 	font-family: 'Helvetica', serif;
 }
 
+.tn {
+	display:  inline-block;
+	width:  85%;
+}
+
 #main {
 	border: 3px solid black;
 	position: relative;
+	/*width: 30%;*/
+	/*height: 90vh;*/
 	margin: 0 auto;
-	margin-top: 25px;
+	padding:  0;
 }
 
 #title {
@@ -206,6 +213,7 @@ body {
 
 @media only screen and (max-width: 600px) {
   #main{
-  	width: 80%;
+  	width: 95%;
+  	font-size: .9rem;
   }
 }
