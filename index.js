@@ -1,8 +1,5 @@
 const fs = require('fs')
 var XMLHttpRequest = require('xhr2');
-//const SpotifyWebApi = require('spotify-web-api-node');
-//const token = "BQBQ9G4epaVri8NaJ4THIdgZ7onVKWLux8OVeeVpo_VkGVg7oa4Gamnz4kjTYLpOaEZO53TxU61Jqge7rkjf1I_1NTlZM6ILZx-ETvTO4pfp87ZC6A1IbnYpf9ykxOhzRY2y_csYo6HO29Wk-LI5xp9UQ6a7o69HeqcEcL1_0NQIXixb6Kbt2f63m2H1Ee5UrhLFz0ygjI7_Xc0ybgTZzYKgq2e6BN-WVaSR5WFM6zyKhmNtWAverAXFkAnbfzOAWMV3g9xULBAHNG5snry7LXQc6717oVm_";
-//const spotifyApi = new SpotifyWebApi();
 
 
 var SpotifyWebApi = require('spotify-web-api-node');
@@ -16,8 +13,6 @@ const { engine } = require('express-handlebars');
 const path = require('path');
 
 const port = process.env.PORT || 8080;
-
-// This file is copied from: https://github.com/thelinmichael/spotify-web-api-node/blob/master/examples/tutorial/00-get-access-token.js
 
 const scopes = [
     'ugc-image-upload',
@@ -94,61 +89,6 @@ app.use(express.static('public'))
         );
         
 
-/* trying to get username in a 2 way API call
-        var index = ["https://api.spotify.com/v1/me", "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=3"];
-
-        var request = new XMLHttpRequest();
-
-        for (var i = 0; i < index.length; i++) {
-            console.log("i = " + i);
-            var url = index[i];
-
-            request.open("GET", url);
-
-            request.setRequestHeader("Accept", "application/json");
-            request.setRequestHeader("Content-Type", "application/json");
-            request.setRequestHeader("Authorization", "Bearer " + access_token);
-
-            
-            request.onreadystatechange = function() {
-                if(request.readyState === 4) {
-                    var data2 = request.responseText;
-                    var arr = getMyData(data2);
-                    var artists = getArtists(data2);
-                    if(i !== 2){
-                        var un = getUserName(data2);
-                    }
-                    res.render("main", {layout : "index", trackone : arr[0], tracktwo : arr[1], trackthree : arr[2], artists1: artists[0], artists2: artists[1], artists3: artists[2], username: un},);
-                }
-            }
-            request.send();
-        } 
-
-*/
-
-
-        /* Get user name 
-        var url1 = "https://api.spotify.com/v1/me";
-
-        var xhr1 = new XMLHttpRequest();
-        xhr1.open("GET", url1);
-
-        xhr1.setRequestHeader("Accept", "application/json");
-        xhr1.setRequestHeader("Content-Type", "application/json");
-        xhr1.setRequestHeader("Authorization", "Bearer " + access_token);
-
-        xhr1.onreadystatechange = function () {
-           if (xhr1.readyState === 4) {
-              var data1 = xhr1.responseText;
-              console.log("name: " + data1);
-              res.send(getUserName(data1));
-           }};
-
-        xhr1.send();
-        // end get user name */
-
-
-
         // Get user top 5 tracks 
         var url2 = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=3";
 
@@ -170,12 +110,6 @@ app.use(express.static('public'))
 
         xhr2.send();
 
-        //console.log("lets go");
-        // end get user top 5 tracks
-
-
-      
-        
 
         setInterval(async () => {
           const data = await spotifyApi.refreshAccessToken();
@@ -220,7 +154,6 @@ function getArtists(jsoninp) {
     const obj = JSON.parse(jsoninp);
     let ret = new Array(3);
     // each song
-
 
     for(var i = 0; i < 3; i++){
       let temp = new Array(Object.keys(obj.items[i].artists).length);
