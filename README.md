@@ -12,3 +12,6 @@ All authentication and login is done by the Spotify OAuth 2.0 authentication on 
 
 # XML / API Calls
 The Web App was built and tested using Node.js, using Express and XMLHttpRequests in JS. Spotify provides an input/ouput API call generator to easily create curl calls for the command line. These were then translated into XMLHttpRequests (ex. headers). Here is the cool Spotify generator: https://developer.spotify.com/console/get-current-user-top-artists-and-tracks/
+
+
+![Screen Shot 2022-03-31 at 1 25 12 AM](https://user-images.githubusercontent.com/67079818/160982618-9b9714b3-4a3a-4c6b-b301-4957421b5e3b.png)
