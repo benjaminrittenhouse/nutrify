@@ -12,3 +12,12 @@
     "xhr2": "^0.2.1"
   }
 }
+
+{
+  "name": "nutrifyy",
+  "description": "A fy web app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  }
+}
