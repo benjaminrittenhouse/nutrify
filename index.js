@@ -126,7 +126,7 @@ app.use(express.static('public'))
       });
   });
   
-  app.listen(PORT, () =>
+  app.listen(port, () =>
     console.log(
       'HTTP Server up.'
     )
