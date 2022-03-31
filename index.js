@@ -40,7 +40,7 @@ const scopes = [
 var spotifyApi = new SpotifyWebApi({
     clientId: 'e00c88461c014f3890e27d7c44aa9603',
     clientSecret: 'b04c0d173286479e9c043017ea692dd6',
-    redirectUri: 'nutrifyy.herokuapp.com/callback'
+    redirectUri: 'https://nutrifyy.herokuapp.com/callback'
   });
   
   const app = express();
