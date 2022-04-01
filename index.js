@@ -38,8 +38,8 @@ const scopes = [
   
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
-    clientId: ENV['CLIENTID'],
-    clientSecret: ENV['SECRET'],
+    clientId: process.env.CLIENTID,
+    clientSecret: process.env.SECRET,
     redirectUri: 'https://nutrifyy.herokuapp.com/callback'
   });
   
