@@ -1,3 +1,9 @@
+/*
+@Author Benjamin Rittenhouse
+index.js
+April 18th, 2022
+*/
+
 const fs = require('fs')
 var XMLHttpRequest = require('xhr2');
 
@@ -14,11 +20,12 @@ const path = require('path');
 
 const port = process.env.PORT || 3000;
 
+// Permissions to read via Spotify AUTH
 const scopes = [
     'user-top-read'
   ];
   
-// credentials are optional
+// Secret spotify API developer app passphrases
 var spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENTID,
     clientSecret: process.env.SECRET,
@@ -28,16 +35,19 @@ var spotifyApi = new SpotifyWebApi({
   const app = express();
   
 
+// create and set engine / views
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set("views", "./views");
 
 app.use(express.static('public'))
 
+// landing page (login)
   app.get('/', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
   });
   
+  // callback upon successful authorization
   app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
@@ -60,22 +70,25 @@ app.use(express.static('public'))
         spotifyApi.setRefreshToken(refresh_token);
   
 
-
+        // Token debug
         console.log(
           `Sucessfully retreived access token. Expires in ${expires_in} s.`
         );
         
 
-        // Get user top 5 tracks 
+        // Get user top 3 tracks 
         var url2 = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=3";
 
+        // create XML requests
         var xhr2 = new XMLHttpRequest();
         xhr2.open("GET", url2);
 
+        // set headers
         xhr2.setRequestHeader("Accept", "application/json");
         xhr2.setRequestHeader("Content-Type", "application/json");
         xhr2.setRequestHeader("Authorization", "Bearer " + access_token);
 
+        // render page with information from var url2 & callback
         xhr2.onreadystatechange = function () {
            if (xhr2.readyState === 4) {
               var data2 = xhr2.responseText;
@@ -88,6 +101,7 @@ app.use(express.static('public'))
         xhr2.send();
 
 
+        // refresh token if needed
         setInterval(async () => {
           const data = await spotifyApi.refreshAccessToken();
           const access_token = data.body['access_token'];
@@ -102,7 +116,9 @@ app.use(express.static('public'))
         res.send(`Error getting Tokens: ${error}`);
       });
   });
+
   
+  // Listen on Herokuapp (change to localhost for local testing)
   app.listen(port, () =>
     console.log(
       'HTTP Server up.'
@@ -110,17 +126,16 @@ app.use(express.static('public'))
   );
 
 
-  //GET MY PROFILE DATA
 
+// get user top 3 songs
 function getMyData(jsoninp) {
-    const obj = JSON.parse(jsoninp);
+    const obj = JSON.parse(jsoninp); // parse JSON
     let ret = new Array(3);
         for(var i = 0; i < 3; i++){
           var tempstr = "";
-          // ret += "<div>";
-          //      song name                     album name    
-          if(obj.items[i].name !== 'undefined'){
-            tempstr += obj.items[i].name; /*obj.items[i].album.name + */
+   
+          if(obj.items[i].name !== 'undefined'){ // edge case: no songs
+            tempstr += obj.items[i].name; // add song name to return value
           } else {
             tempstr += "";
           }  
@@ -131,30 +146,34 @@ function getMyData(jsoninp) {
     return ret;
 }
 
+// get artists from top 3 songs
 function getArtists(jsoninp) {
-    const obj = JSON.parse(jsoninp);
+    const obj = JSON.parse(jsoninp); // parse JSON
     let ret = new Array(3);
     // each song
 
-    for(var i = 0; i < 3; i++){
-      let temp = new Array(Object.keys(obj.items[i].artists).length);
+    for(var i = 0; i < 3; i++){ // iterate over each song
+      let temp = new Array(Object.keys(obj.items[i].artists).length); // cast to array
+
       // artists who made song (2d array)
       for(var j = 0; j < Object.keys(obj.items[i].artists).length; j++){
-          temp[j] = obj.items[i].artists[j].name
+          temp[j] = obj.items[i].artists[j].name // collect artist names
       }
 
      ret[i] = temp;
     }
-    return ret;
+    return ret; // return artist names
 }
 
+// get duration of each song
 function getDuration(jsoninp){
     const obj = JSON.parse(jsoninp);
     let ret = new Array(5);
+
     // each song
     var total = 0;
     for(var i = 0; i < 3; i++){
-          var millis = obj.items[i].duration_ms;      
+          var millis = obj.items[i].duration_ms;    // convert MS   
           var minutes = Math.floor(millis / 60000);
           var seconds = ((millis % 60000) / 1000).toFixed(0);
           var final = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
@@ -169,12 +188,12 @@ function getDuration(jsoninp){
     
     ret[3] = final2
 
-    ret[4] = dt();
+    ret[4] = dt(); // get current month / year (to be put in serving size)
 
-    console.log("Final: " + ret);
     return ret;
 }
 
+/* Get username (not implemented currently) */
 function getUserName(jsoninp){
   const obj = JSON.parse(jsoninp);
   var ret = "";
@@ -184,6 +203,7 @@ function getUserName(jsoninp){
   return ret;
 }
 
+// calculate month and year
 function dt(){
   var today = new Date();
   var mm = String(today.getMonth() + 1).padStart(2, '0');
