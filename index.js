@@ -42,7 +42,12 @@ app.set("views", "./views");
 
 app.use(express.static('public'))
 
-// landing page (login)
+// test landing
+app.get('/landing', (req, res) => {
+    res.render("landing");
+  });
+
+// login
   app.get('/', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
   });
