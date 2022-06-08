@@ -44,7 +44,7 @@ app.use(express.static('public'))
 
 // test landing
 app.get('/landing', (req, res) => {
-    res.render("landing");
+    res.render("landing", {layout : "landing"});
   });
 
 // login
