@@ -1,7 +1,7 @@
 /*
 @Author Benjamin Rittenhouse
 index.js
-April 18th, 2022
+June 8th, 2022
 */
 
 const fs = require('fs')
@@ -27,9 +27,9 @@ const scopes = [
   
 // Secret spotify API developer app passphrases
 var spotifyApi = new SpotifyWebApi({
-    clientId: '8b19cf1470e0431ca010a39c59f04e6e',
-    clientSecret: 'd4bb4a958f97412dadba25a607558196',
-    redirectUri: 'http://localhost:8888/callback'
+    clientId: process.env.CLIENTID,
+    clientSecret: process.env.SECRET,
+    redirectUri: 'https://nutrifyy.herokuapp.com/callback'
   });
   
   const app = express();
@@ -124,7 +124,7 @@ app.use(express.static('public'))
 
   
   // Listen on Herokuapp (change to localhost for local testing)
-  app.listen(8888, () =>
+  app.listen(port, () =>
     console.log(
       'HTTP Server up.'
     )
