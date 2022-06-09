@@ -27,9 +27,9 @@ const scopes = [
   
 // Secret spotify API developer app passphrases
 var spotifyApi = new SpotifyWebApi({
-    clientId: process.env.CLIENTID,
-    clientSecret: process.env.SECRET,
-    redirectUri: 'https://nutrifyy.herokuapp.com/callback'
+    clientId: '8b19cf1470e0431ca010a39c59f04e6e',
+    clientSecret: 'd4bb4a958f97412dadba25a607558196',
+    redirectUri: 'http://localhost:8888/callback'
   });
   
   const app = express();
@@ -42,13 +42,13 @@ app.set("views", "./views");
 
 app.use(express.static('public'))
 
-// test landing
-app.get('/landing', (req, res) => {
+// landing
+  app.get('/', (req, res) => {
     res.render("landing", {layout : "landing"});
   });
 
 // login
-  app.get('/', (req, res) => {
+  app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
   });
   
@@ -124,7 +124,7 @@ app.get('/landing', (req, res) => {
 
   
   // Listen on Herokuapp (change to localhost for local testing)
-  app.listen(port, () =>
+  app.listen(8888, () =>
     console.log(
       'HTTP Server up.'
     )
